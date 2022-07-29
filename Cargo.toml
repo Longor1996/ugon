@@ -1,0 +1,32 @@
+[package]
+name = "ugon"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+authors = ["Longor1996 <lalongok@gmail.com>"]
+edition = "2021"
+
+description = "A object-notation/data-format that uses gaps in the UTF-8 encoding as tags."
+keywords = ["ugon", "utf8", "format", "encoding", "serialization"]
+categories = ["encoding"]
+
+readme = "README.md"
+homepage = "https://github.com/Longor1996/ugon"
+repository = "https://github.com/Longor1996/ugon"
+
+[workspace]
+members = [".", "./ugon-cli"]
+default-members = ["ugon-cli"]
+
+[dependencies]
+serde = {version = "^1", optional = true}
+indexmap = {version = "^1", optional = true}
+base64 = {version = "0.13", optional = true}
+
+[features]
+default = []
+all = ["default", "serde", "indexmap", "base64"]
+
+serde = ["dep:serde"]
+indexmap = ["dep:indexmap"]
+base64 = ["dep:base64"]
+# raw_value ?
