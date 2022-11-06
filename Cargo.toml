@@ -13,19 +13,25 @@ readme = "README.md"
 homepage = "https://github.com/Longor1996/ugon"
 repository = "https://github.com/Longor1996/ugon"
 
-[workspace]
-members = [".", "./ugon-cli"]
-default-members = ["ugon-cli"]
+[[bin]]
+name = "ugon"
+required-features = ["cli"]
 
 [dependencies]
-serde = {version = "^1", optional = true}
+miette = {version = "5.3.0", optional = true}
+clap = {version = "^4", optional = true, features = ["derive", "env", "wrap_help", "string"]}
+smallvec = {version = "1.10.0", optional = true, features = ["serde", "union", "const_generics", "const_new"]}
+serde = {version = "^1", optional = true, features = ["derive"]}
 indexmap = {version = "^1", optional = true}
 base64 = {version = "0.13", optional = true}
 
 [features]
-default = []
-all = ["default", "serde", "indexmap", "base64"]
+default = ["std"]
+std = ["alloc"]
+alloc = []
+cli = ["all", "clap", "miette"]
 
+all = ["default", "serde", "indexmap", "base64"]
 serde = ["dep:serde"]
 indexmap = ["dep:indexmap"]
 base64 = ["dep:base64"]

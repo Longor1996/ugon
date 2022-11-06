@@ -1,0 +1,1 @@
+//! Serializer implementation for UGON.
